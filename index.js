@@ -40,6 +40,13 @@ async function run() {
             res.send(result);
         })
 
+        // BongoDB teke Data pawar function
+        app.get('/crafts', async (req, res) => {
+            const cursor = craftCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+
 
 
 
