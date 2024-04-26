@@ -27,7 +27,22 @@ async function run() {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
 
-        
+        // Database name Create
+        const database = client.db("Craft-Store");
+        const craftCollection = database.collection("craft-Item");
+
+
+        // Client side a requast patanur function
+        app.post('/crafts', async (req, res) => {
+            const newCraft = req.body;
+            console.log(newCraft);
+            const result = await craftCollection.insertOne(newCraft);
+            res.send(result);
+        })
+
+
+
+
 
 
 
