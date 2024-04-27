@@ -48,6 +48,38 @@ async function run() {
         })
 
 
+        // Update get Data for mongoDB
+        app.get('/crafts/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await craftCollection.findOne(query);
+            res.send(result);
+        })
+
+        //  finel Update data request receved
+        app.put('/crafts/:id', async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: new ObjectId(id) };
+            const option = { upsert: true };
+            const updateCraft = req.body;
+            const upCraft = {
+                $set: {
+                    craftURL: updateCraft.craftURL,
+                    itemName: updateCraft.itemName,
+                    subitemname: updateCraft.subitemname,
+                    shortdescription: updateCraft.shortdescription,
+                    price: updateCraft.price,
+                    rating: updateCraft.rating,
+                    Customization: updateCraft.Customization,
+                    processing_time: updateCraft.processing_time,
+                    stockStatus: updateCraft.stockStatus
+                }
+            }
+            const result = await craftCollection.updateOne(filter, upCraft, option);
+            res.send(result);
+        })
+
+
 
 
 
