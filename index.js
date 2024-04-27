@@ -88,6 +88,17 @@ async function run() {
             res.send(result);
         })
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        //  Create spasific data
+        const cetagoryCollection = client.db('ArtandCraft').collection('CraftCetagory');
+
+        // BongoDB teke cetagory Data pawar function
+        app.get('/cetagory', async (req, res) => {
+            const cursor = cetagoryCollection.find();
+            const result = await cursor.toArray();
+            res.send(result);
+        })
 
 
         // Send a ping to confirm a successful connection
