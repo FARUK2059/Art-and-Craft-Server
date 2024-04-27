@@ -48,7 +48,7 @@ async function run() {
         })
 
 
-        // Update get Data for mongoDB
+        // Update get Data for mongoDB to Server with Single data
         app.get('/crafts/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) };
@@ -56,7 +56,7 @@ async function run() {
             res.send(result);
         })
 
-        //  finel Update data request receved
+        // Update request send server to client and  receved in mongodb
         app.put('/crafts/:id', async (req, res) => {
             const id = req.params.id;
             const filter = { _id: new ObjectId(id) };
@@ -80,8 +80,13 @@ async function run() {
         })
 
 
-
-
+        // Delete Data mongoDB with cliend side request send
+        app.delete('/crafts/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const result = await craftCollection.deleteOne(query);
+            res.send(result);
+        })
 
 
 
