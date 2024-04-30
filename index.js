@@ -90,15 +90,18 @@ async function run() {
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //  Create spasific data
-        const cetagoryCollection = client.db('ArtandCraft').collection('CraftCetagory');
+        //  Create extra data get to mongoDB data (Extra)
+        const newFaceDataCollection = client.db('ArtandCraft').collection('SubCetagory');
 
-        // BongoDB teke cetagory Data pawar function
-        app.get('/cetagory', async (req, res) => {
-            const cursor = cetagoryCollection.find();
+        // BongoDB teke painting Data pawar function
+        app.get('/painting', async (req, res) => {
+            const cursor = newFaceDataCollection.find();
             const result = await cursor.toArray();
             res.send(result);
         })
+
+
+        // *******************************
 
 
         // Send a ping to confirm a successful connection
